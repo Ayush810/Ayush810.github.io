@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ayush Tiwari | Power BI & Fabric Developer</title>
+<meta name="description" content="Ayush Tiwari - Power BI Developer (PL-300) with 5.5 years building dashboards, Microsoft Fabric migrations and AI-powered analytics with Claude and Power BI MCP servers.">
+<meta property="og:title" content="Ayush Tiwari | Power BI & Fabric Developer">
+<meta property="og:description" content="Power BI, Microsoft Fabric and AI-powered analytics portfolio.">
+<meta property="og:type" content="website">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body><meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: streaming-app shell. Billboard hero, then horizontal "rows" of cards, then chart "episodes" on a dark stage. Single dark look by design. */
+:root{
+  color-scheme: dark;
+  --stage:#0b0b0d;        /* page background */
+  --panel:#16161a;        /* cards, chart panels */
+  --panel-2:#202026;      /* raised / hover */
+  --ink:#f3f1ee;          /* primary text */
+  --ink-2:#b9b6b1;        /* secondary text */
+  --ink-3:#7d7a76;        /* muted text, axes */
+  --grid:#2a2a30;         /* chart grid */
+  --red:#e50914;          /* accent */
+  --red-soft:#ff4d55;     /* accent on dark text use */
+  --red-deep:#8f0610;
+  --red-faint:#3a0d10;
+  --gold:#f5c518;         /* match badge */
+  --display:"Bebas Neue","Arial Narrow",Impact,sans-serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 900px){ :root{ --gutter-l:max(48px, env(safe-area-inset-left, 0px)); --gutter-r:max(48px, env(safe-area-inset-right, 0px)); } }
+*{box-sizing:border-box}
+body{background:var(--stage);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--stage)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
+.wrap{padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;gap:24px;padding-block:14px;background:linear-gradient(var(--stage) 30%, rgba(11,11,13,0));}
+.logo{font-family:var(--display);font-size:34px;letter-spacing:1px;color:var(--red);line-height:1;text-decoration:none}
+.nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.nav ul a{color:var(--ink-2);text-decoration:none;font-size:14px}
+.nav ul a:hover{color:var(--ink)}
+.avatar{margin-left:auto;width:32px;height:32px;border-radius:4px;background:var(--red);display:grid;place-items:center;font-family:var(--display);font-size:20px;flex:none}
+@media (max-width:640px){.nav ul{display:none}}
+
+/* hero billboard */
+.hero{position:relative;padding-block:56px 40px;overflow:hidden;isolation:isolate}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.9}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--stage) 8%,rgba(11,11,13,.75) 45%,rgba(11,11,13,.2)),linear-gradient(0deg,var(--stage),rgba(11,11,13,0) 40%)}
+.series-tag{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-2)}
+.series-tag b{font-family:var(--display);font-size:22px;color:var(--red);letter-spacing:.05em}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(56px,11vw,128px);line-height:.88;margin:12px 0 10px;letter-spacing:.01em;text-wrap:balance;max-width:12ch}
+.meta{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;font-size:14px;color:var(--ink-2);margin-bottom:14px}
+.match{color:#46d369;font-weight:700}
+.badge{border:1px solid var(--ink-3);padding:0 6px;border-radius:3px;font-size:12px;color:var(--ink-2)}
+.hero p.logline{max-width:58ch;font-size:17px;color:var(--ink);margin:0 0 22px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border-radius:4px;border:0;font:700 16px var(--body);cursor:pointer;text-decoration:none}
+.btn.play{background:var(--ink);color:var(--stage)}
+.btn.info{background:rgba(125,122,118,.35);color:var(--ink)}
+.btn:hover{filter:brightness(.88)}
+.hero-stats{display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:34px}
+.hstat .n{font-family:var(--display);font-size:44px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.hstat .n em{font-style:normal;color:var(--red-soft)}
+.hstat .l{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+/* rows */
+section.row{padding-block:18px}
+.row h2{font-family:var(--body);font-size:20px;font-weight:700;margin:0 0 10px;display:flex;align-items:baseline;gap:10px}
+.row h2 small{font-size:13px;font-weight:400;color:var(--ink-3)}
+.rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:var(--panel-2) transparent}
+.card{scroll-snap-align:start;flex:0 0 clamp(230px,26vw,300px);aspect-ratio:16/9;max-width:100%;border-radius:6px;position:relative;overflow:hidden;cursor:pointer;border:0;padding:0;text-align:left;color:var(--ink);background:var(--panel);transition:transform .25s ease, box-shadow .25s ease}
+.card:hover,.card:focus-visible{transform:scale(1.04);box-shadow:0 10px 30px rgba(0,0,0,.6);z-index:2}
+.card .art{position:absolute;inset:0}
+.card .cap{position:absolute;inset:auto 0 0 0;padding:10px 12px;background:linear-gradient(0deg,rgba(0,0,0,.92),rgba(0,0,0,0))}
+.card .kind{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--red-soft);font-weight:700}
+.card .t{font-family:var(--display);font-size:24px;line-height:1;letter-spacing:.02em}
+.card .s{font-size:12px;color:var(--ink-2)}
+
+/* top 10 */
+.top10 .rail{gap:4px}
+.t10{flex:0 0 auto;display:flex;align-items:flex-end;height:150px;scroll-snap-align:start;cursor:default}
+.t10 .num{font-family:var(--display);font-size:160px;line-height:.8;color:var(--stage);-webkit-text-stroke:3px var(--ink-3);margin-right:-18px;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.t10 .poster{width:104px;height:146px;border-radius:5px;background:var(--panel);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:8px}
+.t10 .poster .pt{font-family:var(--display);font-size:20px;line-height:.95}
+.t10 .poster .pc{font-family:var(--mono);font-size:11px;color:var(--ink-2)}
+.t10 .poster i{position:absolute;inset:0 0 auto 0;height:4px;background:var(--red)}
+
+/* chart episodes */
+.ep{display:grid;gap:14px;grid-template-columns:repeat(12,minmax(0,1fr))}
+.panel{background:var(--panel);border-radius:8px;padding:18px 18px 14px;min-width:0;grid-column:span 12}
+@media (min-width:980px){.span7{grid-column:span 7}.span5{grid-column:span 5}.span6{grid-column:span 6}}
+.panel h3{margin:0;font-size:16px;font-weight:700}
+.panel .sub{margin:2px 0 12px;font-size:13px;color:var(--ink-3)}
+.eplabel{font-family:var(--mono);font-size:11px;color:var(--red-soft);letter-spacing:.08em;text-transform:uppercase}
+svg text{font-family:var(--body)}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.tbl-toggle{margin-top:8px;background:none;border:0;color:var(--ink-3);font:12px var(--body);cursor:pointer;text-decoration:underline;padding:0}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+.tbl td,.tbl th{padding:4px 6px;border-bottom:1px solid var(--grid);text-align:left}
+.tbl td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono)}
+.note{font-size:12px;color:var(--ink-3);margin-top:10px}
+.tip{position:fixed;pointer-events:none;z-index:50;background:var(--ink);color:var(--stage);font-size:13px;padding:6px 10px;border-radius:4px;box-shadow:0 6px 18px rgba(0,0,0,.5);max-width:240px;opacity:0;transition:opacity .12s}
+.tip b{font-weight:700}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.72);display:grid;place-items:center;padding:24px var(--gutter-r) 24px var(--gutter-l)}
+.modal[hidden]{display:none}
+.player{position:relative;aspect-ratio:16/9;max-width:100%;background:#000;border-radius:8px 8px 0 0;overflow:hidden}
+.player canvas{position:absolute;inset:0;width:100%;height:100%}
+.player .ctrl{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:10px;padding:10px 14px;background:linear-gradient(0deg,rgba(0,0,0,.85),rgba(0,0,0,0))}
+.player .pp{width:34px;height:34px;border-radius:50%;border:0;background:var(--ink);color:var(--stage);font-size:14px;cursor:pointer;flex:none}
+.player .bar{flex:1;height:4px;background:rgba(255,255,255,.25);border-radius:2px;overflow:hidden}
+.player .bar i{display:block;height:100%;width:0;background:var(--red)}
+.player .time{font-family:var(--mono);font-size:11px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.player .flag{position:absolute;top:12px;left:14px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);background:rgba(0,0,0,.55);padding:3px 8px;border-radius:3px}
+.sheet .x{z-index:3}
+.card .art.vid{opacity:0;transition:opacity .3s}
+.card.playing .art.vid{opacity:1}
+.card .playhint{position:absolute;top:8px;right:8px;font-size:10px;letter-spacing:.15em;color:var(--ink);background:rgba(0,0,0,.6);padding:2px 6px;border-radius:3px}
+.sheet{position:relative;background:var(--panel);border-radius:8px;max-width:760px;width:100%;max-height:85vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+.sheet .banner{height:180px;position:relative}
+.sheet .banner h4{position:absolute;left:24px;bottom:14px;margin:0;font-family:var(--display);font-weight:400;font-size:44px;line-height:.95;max-width:90%}
+.sheet .bd{padding:18px 24px 24px}
+.sheet .x{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;border:0;background:var(--stage);color:var(--ink);font-size:20px;cursor:pointer}
+.sheet ul{padding-left:18px;margin:8px 0}
+.sheet li{margin:4px 0;color:var(--ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--panel-2);color:var(--ink-2)}
+
+/* footer */
+footer{padding-block:36px 48px;color:var(--ink-3);font-size:13px;border-top:1px solid var(--grid);margin-top:28px}
+.contact{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin-bottom:12px;color:var(--ink-2)}
+.copy{background:var(--panel-2);border:0;color:var(--ink);padding:4px 10px;border-radius:4px;cursor:pointer;font:12px var(--body)}
+/* ---------- spatial layer: glass windows floating in a lit room ---------- */
+:root{
+  --glass:rgba(38,36,44,.42);
+  --glass-strong:rgba(30,28,36,.72);
+  --glass-brd:rgba(255,255,255,.10);
+  --glass-hi:rgba(255,255,255,.22);
+  --depth:0 1px 0 rgba(255,255,255,.08) inset, 0 24px 60px -18px rgba(0,0,0,.75), 0 8px 18px -10px rgba(0,0,0,.6);
+  --r-win:22px; --r-card:16px;
+}
+body{background:
+  radial-gradient(60vw 50vw at 85% -10%, rgba(229,9,20,.22), transparent 60%),
+  radial-gradient(50vw 40vw at -10% 30%, rgba(120,40,160,.16), transparent 60%),
+  radial-gradient(70vw 50vw at 50% 110%, rgba(229,9,20,.12), transparent 60%),
+  var(--stage);background-attachment:fixed}
+.glass{background:var(--glass);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);border:1px solid var(--glass-brd);box-shadow:var(--depth)}
+
+/* floating ornament nav */
+.nav{background:none;padding-block:14px}
+.nav .pill{display:flex;align-items:center;gap:22px;width:100%;max-width:1100px;margin:0 auto;padding:8px 10px 8px 18px;border-radius:999px}
+.nav ul a{padding:6px 12px;border-radius:999px;transition:background .2s,color .2s}
+.nav ul a:hover{background:rgba(255,255,255,.08)}
+
+/* hero as a floating window over a deeper scene */
+.hero{perspective:1400px}
+.hero::after{background:linear-gradient(0deg,var(--stage),rgba(11,11,13,0) 45%)}
+.hero .win{position:relative;max-width:820px;padding:28px 30px 26px;border-radius:var(--r-win);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+@media (max-width:640px){.hero .win{padding:20px 18px}}
+.hero canvas{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.hero-stats{gap:12px}
+.hstat{padding:12px 16px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--glass-brd)}
+.btn{border-radius:999px}
+.btn.info{-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--glass-brd)}
+
+/* rails get room so lifted cards don't clip */
+.rail{padding:14px 6px 22px;margin:-14px -6px 0;perspective:1000px}
+.card{border-radius:var(--r-card);border:1px solid var(--glass-brd);box-shadow:var(--depth);transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s}
+.card:hover,.card:focus-visible{transform:translateZ(40px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(1.03);box-shadow:0 1px 0 rgba(255,255,255,.12) inset,0 40px 70px -20px rgba(0,0,0,.85),0 0 0 1px var(--glass-hi)}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(240px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.18),transparent 60%);opacity:0;transition:opacity .3s}
+.card:hover::after,.card:focus-visible::after{opacity:1}
+.card .cap{background:linear-gradient(0deg,rgba(10,10,14,.85),rgba(10,10,14,0));-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.t10 .poster{border-radius:14px;border:1px solid var(--glass-brd);box-shadow:var(--depth)}
+.t10 .num{-webkit-text-stroke:2px rgba(255,255,255,.28)}
+
+/* chart panels as glass windows */
+.panel{border-radius:var(--r-win);background:var(--glass);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);border:1px solid var(--glass-brd);box-shadow:var(--depth);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.panel:hover{transform:translateY(-3px)}
+.tip{border-radius:12px;background:rgba(243,241,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+
+/* modal = floating window */
+.modal{background:rgba(5,5,8,.45);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.sheet{border-radius:26px;background:var(--glass-strong);-webkit-backdrop-filter:blur(30px) saturate(160%);backdrop-filter:blur(30px) saturate(160%);border:1px solid var(--glass-brd);box-shadow:0 1px 0 rgba(255,255,255,.1) inset,0 50px 120px -30px rgba(0,0,0,.9);animation:float-in .45s cubic-bezier(.2,.8,.2,1)}
+.sheet .banner{background:transparent!important}
+.player{border-radius:26px 26px 0 0}
+.sheet .x{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);background:rgba(20,20,26,.6);border:1px solid var(--glass-brd)}
+.chip{background:rgba(255,255,255,.07);border:1px solid var(--glass-brd)}
+@keyframes float-in{from{opacity:.0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}
+footer{border-top:1px solid var(--glass-brd)}
+/* ---------- hero layout ---------- */
+.hero{min-height:min(88vh,760px);display:flex;align-items:center}
+.hero-inner{display:flex;align-items:center;width:100%}
+.hero-inner .win{flex:1 1 auto;min-width:0}
+@media (min-width:861px){.hero .win{max-width:min(720px,60vw)}}
+.hero::after{background:linear-gradient(0deg,var(--stage),rgba(11,11,13,0) 30%)}
+@media (max-width:860px){.hero{min-height:0;display:block}}
+/* ---------- contact & services ---------- */
+.btn.hire{background:var(--red);color:#fff}
+.nav .hire-sm{margin-left:auto;padding:7px 16px;font-size:14px}
+.nav .hire-sm + .avatar{margin-left:0}
+.services{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.svc{border-radius:var(--r-win);padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.svc .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(140deg,var(--red),var(--red-deep));font-family:var(--display);font-size:22px;color:#fff;box-shadow:0 8px 20px -8px rgba(229,9,20,.7)}
+.svc h3{margin:0;font-size:18px}
+.svc p{margin:0;color:var(--ink-2);font-size:14px}
+.svc ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:13.5px}
+.svc li{margin:3px 0}
+.svc .btn{margin-top:auto;align-self:flex-start;padding:8px 18px;font-size:14px}
+.form{display:grid;gap:14px;padding:22px 24px 24px}
+.form h4{margin:0;font-family:var(--display);font-weight:400;font-size:40px;line-height:1}
+.form .lead{margin:-6px 0 4px;color:var(--ink-2);font-size:14px}
+.field{display:grid;gap:6px}
+.field label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.field input,.field select,.field textarea{width:100%;font:15px var(--body);color:var(--ink);background:rgba(255,255,255,.06);border:1px solid var(--glass-brd);border-radius:12px;padding:11px 14px;outline:none;transition:border-color .2s,background .2s}
+.field textarea{min-height:130px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--red-soft);background:rgba(255,255,255,.09)}
+.field select option{background:#1b1a20;color:var(--ink)}
+.field .err{color:var(--red-soft);font-size:12.5px;min-height:1em}
+.field.bad input,.field.bad textarea{border-color:var(--red-soft)}
+.row2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.form .foot{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between}
+.form .count{font-size:12px;color:var(--ink-3);font-family:var(--mono)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.done{padding:26px 24px;display:grid;gap:12px}
+.done h4{margin:0;font-family:var(--display);font-weight:400;font-size:36px}
+.done p{margin:0;color:var(--ink-2)}
+.done pre{margin:0;white-space:pre-wrap;font:13px var(--mono);color:var(--ink-2);background:rgba(255,255,255,.05);border:1px solid var(--glass-brd);border-radius:12px;padding:12px;max-height:180px;overflow:auto}
+.done .btns .btn{padding:8px 18px;font-size:14px}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.glass,.panel,.sheet{background:var(--panel)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<nav class="nav wrap" aria-label="Sections">
+  <div class="pill glass">
+  <a class="logo" href="#top" aria-label="Ayush Tiwari home">AYUSH</a>
+  <ul>
+    <li><a href="#top">Home</a></li>
+    <li><a href="#top10">Top Skills</a></li>
+    <li><a href="#ai">AI Toolkit</a></li>
+    <li><a href="#stats">Skill Stats</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#services">Services</a></li>
+  </ul>
+  <button class="btn hire hire-sm" type="button" data-contact="">Contact me</button>
+  <div class="avatar" aria-hidden="true">A</div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+  <div class="win glass" id="heroWin">
+  <div class="series-tag"><b>A</b> Original Series · Business Intelligence</div>
+  <h1>Ayush Tiwari</h1>
+  <div class="meta">
+    <span class="match">98% Match</span>
+    <span>2021–Now</span>
+    <span class="badge">PL-300</span>
+    <span>5.5 Years</span>
+    <span class="badge">Power BI · Fabric</span>
+    <span>Gurugram, India</span>
+  </div>
+  <p class="logline">Power BI Developer who turns messy operational data into dashboards people actually use. 300+ reports shipped, a 7,000-report estate cut to 3,000 in a Microsoft Fabric migration, and mining-fleet analytics running 24 hours a day at Thiess. Builds reports with Claude through Power BI MCP servers and custom Claude skills.</p>
+  <div class="btns">
+    <a class="btn play" href="#stats">▶ Play Skill Stats</a>
+    <button class="btn info" type="button" id="infoBtn">ⓘ More Info</button>
+    <button class="btn hire" type="button" data-contact="">✉ Contact me</button>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><div class="n">300<em>+</em></div><div class="l">Reports &amp; dashboards</div></div>
+    <div class="hstat"><div class="n">7,000<em>→</em>3,000</div><div class="l">Reports after Fabric migration</div></div>
+    <div class="hstat"><div class="n">300<em>→</em>60</div><div class="l">Power BI licenses</div></div>
+    <div class="hstat"><div class="n">5.5</div><div class="l">Years in BI</div></div>
+  </div>
+  </div>
+  </div>
+</header>
+
+<main>
+  <section class="row top10 wrap" id="top10" aria-labelledby="t10h">
+    <h2 id="t10h">Top 10 Skills Today <small>Ranked by self-assessed confidence</small></h2>
+    <div class="rail" id="top10rail"></div>
+  </section>
+
+  <section class="row wrap" id="ai" aria-labelledby="aih">
+    <h2 id="aih">AI Toolkit <small>Claude, MCP and Microsoft AI in Power BI</small></h2>
+    <div class="rail" id="aiRail"></div>
+  </section>
+
+  <section class="row wrap" id="projects" aria-labelledby="ph">
+    <h2 id="ph">Featured Projects <small>Select a title for details</small></h2>
+    <div class="rail" id="projRail"></div>
+  </section>
+
+  <section class="row wrap" id="stats" aria-labelledby="sh">
+    <h2 id="sh">Skill Stats <small>Hover any bar for the value</small></h2>
+    <div class="ep">
+      <div class="panel span7">
+        <div class="eplabel">S1 · E1</div>
+        <h3>Skill confidence</h3>
+        <p class="sub">Self-assessed, 0–100. Every skill, including AI tooling.</p>
+        <svg class="chart" id="cConf" role="img" aria-label="Horizontal bar chart of skill confidence"></svg>
+        <button class="tbl-toggle" data-tbl="tConf" type="button">Show as table</button>
+        <div id="tConf" hidden></div>
+      </div>
+      <div class="panel span5">
+        <div class="eplabel">S1 · E2</div>
+        <h3>Confidence by area</h3>
+        <p class="sub">Average of the skills in each area.</p>
+        <svg class="chart" id="cArea" role="img" aria-label="Column chart of average confidence by skill area"></svg>
+        <button class="tbl-toggle" data-tbl="tArea" type="button">Show as table</button>
+        <div id="tArea" hidden></div>
+      </div>
+      <div class="panel span6">
+        <div class="eplabel">S1 · E3</div>
+        <h3>Report estate, before and after Fabric</h3>
+        <p class="sub">Power BI reports in the tenant.</p>
+        <svg class="chart" id="cEstate" role="img" aria-label="Bar chart: 7,000 reports before migration, 3,000 after"></svg>
+      </div>
+      <div class="panel span6">
+        <div class="eplabel">S1 · E4</div>
+        <h3>Power BI licenses, before and after</h3>
+        <p class="sub">Paid licenses after rationalizing access.</p>
+        <svg class="chart" id="cLic" role="img" aria-label="Bar chart: 300 licenses before, 60 after"></svg>
+      </div>
+      <div class="panel">
+        <div class="eplabel">S1 · E5</div>
+        <h3>Toolkit depth</h3>
+        <p class="sub">How each skill splits between hands-on build work and platform or admin work. Hover a segment.</p>
+        <svg class="chart" id="cDepth" role="img" aria-label="Dot plot of skills by build and platform focus"></svg>
+      </div>
+    </div>
+    <p class="note">Confidence scores are Ayush's own assessment, based on the work described in each role and project.</p>
+  </section>
+
+  <section class="row wrap" id="career" aria-labelledby="ch">
+    <h2 id="ch">Career Timeline <small>May 2021 – today</small></h2>
+    <div class="panel">
+      <svg class="chart" id="cTime" role="img" aria-label="Timeline of roles: Cynoteck May 2021 to May 2025, Thiess May 2025 to now"></svg>
+    </div>
+  </section>
+
+  <section class="row wrap" aria-labelledby="eh">
+    <h2 id="eh">Continue Watching <small>Roles</small></h2>
+    <div class="rail" id="roleRail"></div>
+  </section>
+
+  <section class="row wrap" aria-labelledby="cch">
+    <h2 id="cch">Credentials</h2>
+    <div class="rail" id="credRail"></div>
+  </section>
+
+  <section class="row wrap" id="services" aria-labelledby="svh">
+    <h2 id="svh">Work With Me <small>Freelance and contract services</small></h2>
+    <div class="services">
+      <article class="svc glass">
+        <div class="ico" aria-hidden="true">DA</div>
+        <h3>Data Analytics</h3>
+        <p>Power BI dashboards and reports that turn operational data into decisions.</p>
+        <ul>
+          <li>Dashboard design and KPI scorecards</li>
+          <li>Data modeling, DAX and Power Query</li>
+          <li>SQL extraction and performance tuning</li>
+          <li>Power BI admin, gateways and deployment pipelines</li>
+        </ul>
+        <button class="btn hire" type="button" data-contact="Data Analytics">Enquire</button>
+      </article>
+      <article class="svc glass">
+        <div class="ico" aria-hidden="true">AI</div>
+        <h3>AI-Powered Analytics</h3>
+        <p>Make your data ready for AI and let people ask questions of it in plain language.</p>
+        <ul>
+          <li>AI report development with Claude</li>
+          <li>Claude connected to your models via Power BI MCP servers</li>
+          <li>Microsoft Fabric Data Agents and Copilot in Power BI</li>
+          <li>AI-ready datasets and semantic models</li>
+          <li>Power BI to Microsoft Fabric migration</li>
+        </ul>
+        <button class="btn hire" type="button" data-contact="AI-Powered Analytics">Enquire</button>
+      </article>
+      <article class="svc glass">
+        <div class="ico" aria-hidden="true">AU</div>
+        <h3>AI Automation in Power BI</h3>
+        <p>Cut manual reporting work with Power Automate, Power Apps and AI-assisted development.</p>
+        <ul>
+          <li>Event-based refreshes and data alerts to email or Teams</li>
+          <li>Write-back from Power BI with Power Apps</li>
+          <li>Ingestion from Forms, SharePoint and REST APIs</li>
+          <li>Custom Claude skills for your BI team's workflows</li>
+          <li>Custom Deneb visuals built with AI assistance</li>
+        </ul>
+        <button class="btn hire" type="button" data-contact="AI Automation in Power BI">Enquire</button>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="contact">
+    <span>aayyush456@gmail.com</span><button class="copy" type="button" id="copyMail">Copy email</button>
+    <a href="https://www.linkedin.com/in/ayush-tiwari-0810" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/Ayush810" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://medium.com/@aayyush456" target="_blank" rel="noopener">Medium</a>
+  </div>
+  <div>Ayush Tiwari · Power BI Developer · Gurugram, India</div>
+</footer>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+<div class="modal" id="contact" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="cTitle">
+    <button class="x" id="cClose" type="button" aria-label="Close">×</button>
+    <form class="form" id="cForm" novalidate>
+      <h4 id="cTitle">Contact me</h4>
+      <p class="lead">Tell me about your project. I usually reply within two working days.</p>
+      <div class="row2">
+        <div class="field" id="fName"><label for="cName">Your name</label><input id="cName" name="name" autocomplete="name" maxlength="80" required><span class="err" aria-live="polite"></span></div>
+        <div class="field" id="fEmail"><label for="cEmail">Email</label><input id="cEmail" name="email" type="email" autocomplete="email" maxlength="120" required><span class="err" aria-live="polite"></span></div>
+      </div>
+      <div class="field"><label for="cService">Service</label>
+        <select id="cService" name="service">
+          <option>Data Analytics</option>
+          <option>AI-Powered Analytics</option>
+          <option>AI Automation in Power BI</option>
+          <option>Full-time role / hiring</option>
+          <option>Something else</option>
+        </select></div>
+      <div class="field" id="fMsg"><label for="cMsg">Description</label><textarea id="cMsg" name="message" maxlength="2000" required placeholder="What do you need, your data sources, and your timeline."></textarea><span class="err" aria-live="polite"></span></div>
+      <div class="hp" aria-hidden="true"><label for="cHoney">Leave empty</label><input id="cHoney" name="_honey" tabindex="-1" autocomplete="off"></div>
+      <div class="foot"><span class="count" id="cCount">0 / 2000</span><button class="btn hire" type="submit" id="cSend">Send</button></div>
+    </form>
+    <div class="done" id="cDone" hidden></div>
+  </div>
+</div>
+<div class="modal" id="modal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="x" id="mClose" type="button" aria-label="Close">×</button>
+    <div class="player" id="mPlayer" hidden>
+      <canvas id="mCanvas" aria-label="Animated project trailer"></canvas>
+      <span class="flag" id="mFlag">Trailer</span>
+      <div class="ctrl"><button class="pp" id="mPP" type="button" aria-label="Pause">❚❚</button><div class="bar"><i id="mProg"></i></div><span class="time" id="mTime">0:00</span></div>
+    </div>
+    <div class="banner" id="mBanner"><h4 id="mTitle"></h4></div>
+    <div class="bd" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+const SKILLS=[
+  {n:"Power BI",v:95,a:"BI & Visualization",b:80,p:20},
+  {n:"Data Visualization",v:92,a:"BI & Visualization",b:95,p:5},
+  {n:"DAX",v:90,a:"Modeling & Querying",b:90,p:10},
+  {n:"Power Query",v:90,a:"Modeling & Querying",b:85,p:15},
+  {n:"Data Modeling",v:90,a:"Modeling & Querying",b:85,p:15},
+  {n:"Dashboard Design",v:90,a:"BI & Visualization",b:95,p:5},
+  {n:"Power BI Administration",v:88,a:"Platform & Admin",b:10,p:90},
+  {n:"SQL",v:85,a:"Modeling & Querying",b:80,p:20},
+  {n:"Microsoft Fabric",v:85,a:"Platform & Admin",b:45,p:55},
+  {n:"Microsoft Excel",v:85,a:"BI & Visualization",b:90,p:10},
+  {n:"Power Automate",v:82,a:"Automation & AI",b:70,p:30},
+  {n:"ETL",v:82,a:"Data Engineering",b:75,p:25},
+  {n:"Deployment Pipelines & CI/CD",v:80,a:"Platform & Admin",b:20,p:80},
+  {n:"Source Control (Power BI)",v:78,a:"Platform & Admin",b:30,p:70},
+  {n:"AI Report Development (Claude)",v:85,a:"Automation & AI",b:85,p:15},
+  {n:"Power BI MCP Servers",v:80,a:"Automation & AI",b:50,p:50},
+  {n:"Copilot in Power BI",v:80,a:"Automation & AI",b:80,p:20},
+  {n:"Custom Claude Skills",v:78,a:"Automation & AI",b:70,p:30},
+  {n:"Fabric Data Agents",v:75,a:"Automation & AI",b:60,p:40},
+  {n:"Prep Data for AI",v:75,a:"Automation & AI",b:70,p:30},
+  {n:"Deneb / Vega-Lite",v:72,a:"BI & Visualization",b:95,p:5},
+  {n:"Tableau",v:70,a:"BI & Visualization",b:90,p:10},
+  {n:"Azure Databricks",v:65,a:"Data Engineering",b:70,p:30},
+  {n:"Python",v:60,a:"Data Engineering",b:85,p:15},
+  {n:"Figma",v:55,a:"BI & Visualization",b:100,p:0}
+];
+const PROJECTS=[
+  {vid:"fabric",k:"Migration",t:"Power BI to Microsoft Fabric",s:"7,000 → 3,000 reports",hue:0,body:["Migrated and rationalized 7,000+ Power BI reports into Microsoft Fabric.","Cut the report inventory to 3,000 and optimized user access.","Reduced Power BI licenses from 300 to 60, improving cost efficiency."],chips:["Microsoft Fabric","Power BI Admin","Governance","Licensing"]},
+  {vid:"mining",k:"Thiess · Mining",t:"Daily Mining Production",s:"24-hour excavator performance",hue:20,body:["Monitors 24-hour excavator performance and operational delays.","Tracks downtime categories (EOD, IOD, maintenance, Non-Rostered Time) at equipment level.","Delay diagnostics with reason codes for root-cause analysis of lost production hours."],chips:["Power BI","DAX","Fleet data","Root-cause analysis"]},
+  {vid:"maint",k:"Thiess · Fleet",t:"Equipment Maintenance Performance",s:"MTBF · MTTR · availability",hue:340,body:["Monitors fleet reliability, availability and maintenance effectiveness across mining equipment.","Tracks MTBF, MTTR, mechanical and physical availability, failure counts, planned vs. unplanned maintenance.","Period-based and Last 28 Days views to benchmark equipment and plan maintenance."],chips:["Power BI","Reliability KPIs","Data modeling"]},
+  {vid:"corp",k:"Corporate",t:"Corporate Improvements Reports",s:"Improvement initiatives",hue:10,body:["Tracks and analyzes the progress of improvement initiatives across the organization.","Lets stakeholders assess which improvement strategies work and where to focus next."],chips:["Power BI","KPIs","Stakeholder reporting"]},
+  {vid:"power",k:"Manufacturing",t:"Power Supplies Production",s:"Production-line analytics",hue:350,body:["Overview and analysis of the power-supply production process.","Supports monitoring and decision-making on the production line."],chips:["Power BI","Production KPIs"]},
+  {vid:"deneb",k:"Custom visuals",t:"Deneb Visual Lab",s:"Vega & Vega-Lite specs",hue:5,body:["Built custom Power BI visuals with Deneb, writing Vega and Vega-Lite specifications.","Used Claude AI to speed up spec generation, optimization and debugging."],chips:["Deneb","Vega-Lite","AI-assisted dev"]}
+];
+const AITOOLS=[
+  {vid:"aiReport",k:"AI · Claude",t:"AI Report Development",s:"Power BI reports built with Claude",hue:18,body:["Builds Power BI reports with Claude as a development partner: requirements to data model, DAX measures and report pages.","Uses Claude to draft, review and optimize DAX and Power Query, then validates results against the source data.","Speeds up custom Deneb (Vega-Lite) visuals with AI-generated and AI-debugged specs."],chips:["Claude","Power BI","DAX","Deneb"]},
+  {vid:"mcp",k:"AI · MCP",t:"Power BI MCP Servers",s:"Claude connected to semantic models",hue:350,body:["Connects Claude to Power BI semantic models through Power BI MCP servers.","Lets Claude inspect tables, columns, relationships and measures directly, then create or edit them in the model.","Runs DAX queries through the MCP connection to check numbers while building."],chips:["MCP","Semantic models","DAX","Claude"]},
+  {vid:"skills",k:"AI · Skills",t:"Custom Claude Skills",s:"Reusable AI workflows for BI teams",hue:5,body:["Creates custom Claude skills that package a team's BI conventions into reusable instructions.","Examples: report standards, DAX naming rules, documentation templates, and step-by-step build workflows.","Makes AI-assisted report work repeatable across a team instead of one-off prompts."],chips:["Claude skills","Standards","Automation"]},
+  {vid:"copilot",k:"AI · Microsoft",t:"Copilot & Fabric Data Agents",s:"Natural-language questions over data",hue:340,body:["Integrates Copilot with Power BI for faster report building and natural-language Q&A.","Develops Microsoft Fabric Data Agents on AI-ready datasets and optimized data models.","Prepares data for AI: clean semantic models, clear names and descriptions, and curated measures."],chips:["Copilot","Fabric Data Agents","Prep data for AI"]}
+];
+const ROLES=[
+  {k:"Now playing",t:"Power BI Analyst · Thiess",s:"May 2025 – Present",hue:0,body:["Power BI dashboards for daily mining operations, production, equipment utilization and asset availability.","Data models for large operational datasets across production, fleet management and site performance.","Integrates production systems, equipment telemetry, the Fleet Management DB and enterprise databases.","Builds Microsoft Fabric Data Agents and AI-ready datasets."],chips:["Power BI","Microsoft Fabric","Fabric Data Agents","Deneb"]},
+  {k:"Season 1",t:"Power BI Consultant · Cynoteck",s:"May 2021 – May 2025",hue:15,body:["Deployment pipelines and CI/CD for Power BI solutions.","Configured and maintained on-premises data gateways.","Managed Power BI environments: user access, security settings, licensing.","Power Automate refresh workflows, data alerts, write-back with Power Apps, and ingestion from Forms, SharePoint and REST APIs."],chips:["Power BI Admin","CI/CD","Power Automate","SQL","DAX"]}
+];
+const CREDS=[
+  {k:"Certification",t:"PL-300",s:"Microsoft Power BI Data Analyst Associate",hue:200,body:["Microsoft Certified: Power BI Data Analyst Associate."],chips:["Microsoft"]},
+  {k:"Education",t:"MCA",s:"Graphic Era Hill University, Dehradun",hue:220,body:["Master of Computer Applications, Graphic Era Hill University, Dehradun."],chips:["Computer Applications"]}
+];
+
+const NS="http://www.w3.org/2000/svg";
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e}
+const tip=document.getElementById('tip');
+function showTip(html,ev){tip.innerHTML=html;tip.style.opacity=1;moveTip(ev)}
+function moveTip(ev){const x=Math.min(ev.clientX+14,innerWidth-250),y=ev.clientY+14;tip.style.left=x+'px';tip.style.top=y+'px'}
+function hideTip(){tip.style.opacity=0}
+function hover(node,html){node.addEventListener('pointerenter',e=>showTip(html,e));node.addEventListener('pointermove',moveTip);node.addEventListener('pointerleave',hideTip);node.setAttribute('tabindex','0');node.addEventListener('focus',()=>{const r=node.getBoundingClientRect();showTip(html,{clientX:r.left+r.width/2,clientY:r.top})});node.addEventListener('blur',hideTip)}
+// rounded-end bar path anchored to baseline (horizontal)
+function hbar(x0,y,w,h,r){r=Math.min(r,w,h/2);return `M${x0},${y}H${x0+w-r}Q${x0+w},${y} ${x0+w},${y+r}V${y+h-r}Q${x0+w},${y+h} ${x0+w-r},${y+h}H${x0}Z`}
+function vbar(x,y0,w,h,r){r=Math.min(r,h,w/2);const y=y0-h;return `M${x},${y0}V${y+r}Q${x},${y} ${x+r},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y0}Z`}
+// sequential red ramp: higher value = deeper/brighter red
+function seq(v){const t=(v-50)/50;const c0=[0x5a,0x10,0x14],c1=[0xff,0x3b,0x45];const c=c0.map((a,i)=>Math.round(a+(c1[i]-a)*Math.max(0,Math.min(1,t))));return `rgb(${c.join(',')})`}
+
+/* E1: skill confidence */
+function drawConf(){
+  const svg=document.getElementById('cConf');const W=660,rowH=24,top=8,L=200,R=40;const data=[...SKILLS].sort((a,b)=>b.v-a.v);const H=top+data.length*rowH+28;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML='';
+  const x=v=>L+(W-L-R)*v/100;
+  [0,25,50,75,100].forEach(t=>{el('line',{x1:x(t),x2:x(t),y1:top,y2:H-24,stroke:css('--grid'),'stroke-width':1},svg);const tx=el('text',{x:x(t),y:H-8,'text-anchor':'middle','font-size':11,fill:css('--ink-3')},svg);tx.textContent=t});
+  data.forEach((d,i)=>{const y=top+i*rowH;const lab=el('text',{x:L-10,y:y+rowH/2+4,'text-anchor':'end','font-size':12,fill:css('--ink-2')},svg);lab.textContent=d.n;
+    const g=el('g',{},svg);el('rect',{x:L,y:y,width:W-L-R,height:rowH,fill:'transparent'},g);
+    el('path',{d:hbar(x(0),y+5,x(d.v)-x(0),rowH-10,4),fill:seq(d.v)},g);
+    const v=el('text',{x:x(d.v)+6,y:y+rowH/2+4,'font-size':11,fill:css('--ink'),'font-family':'JetBrains Mono, monospace'},g);v.textContent=d.v;
+    hover(g,`<b>${d.n}</b><br>Confidence ${d.v}/100<br>${d.a}`)});
+  table('tConf',['Skill','Area','Confidence'],data.map(d=>[d.n,d.a,d.v]));
+}
+/* E2: by area */
+function areas(){const m={};SKILLS.forEach(s=>{(m[s.a]=m[s.a]||[]).push(s.v)});return Object.entries(m).map(([a,vs])=>({a,v:Math.round(vs.reduce((x,y)=>x+y,0)/vs.length),n:vs.length})).sort((x,y)=>y.v-x.v)}
+function drawArea(){
+  const svg=document.getElementById('cArea');const data=areas();const W=420,H=300,T=16,B=58,L=34,R=8;svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML='';
+  const y=v=>T+(H-T-B)*(1-v/100);const bw=(W-L-R)/data.length;
+  [0,25,50,75,100].forEach(t=>{el('line',{x1:L,x2:W-R,y1:y(t),y2:y(t),stroke:css('--grid')},svg);const tx=el('text',{x:L-6,y:y(t)+4,'text-anchor':'end','font-size':11,fill:css('--ink-3')},svg);tx.textContent=t});
+  data.forEach((d,i)=>{const cx=L+bw*i,w=Math.min(46,bw-14),x0=cx+(bw-w)/2;const g=el('g',{},svg);el('rect',{x:cx,y:T,width:bw,height:H-T-B,fill:'transparent'},g);
+    el('path',{d:vbar(x0,y(0),w,y(0)-y(d.v),4),fill:seq(d.v)},g);
+    const vt=el('text',{x:x0+w/2,y:y(d.v)-6,'text-anchor':'middle','font-size':12,fill:css('--ink'),'font-family':'JetBrains Mono, monospace'},g);vt.textContent=d.v;
+    const words=d.a.split(' ');const lt=el('text',{x:x0+w/2,y:H-B+16,'text-anchor':'middle','font-size':11,fill:css('--ink-2')},svg);
+    words.reduce((lines,wd)=>{const last=lines[lines.length-1];if(last&&(last+' '+wd).length<=11)lines[lines.length-1]=last+' '+wd;else lines.push(wd);return lines},[]).forEach((ln,k)=>{const ts=el('tspan',{x:x0+w/2,dy:k?13:0},lt);ts.textContent=ln});
+    hover(g,`<b>${d.a}</b><br>Average ${d.v}/100 across ${d.n} skills`)});
+  table('tArea',['Area','Skills','Average'],data.map(d=>[d.a,d.n,d.v]));
+}
+/* E3/E4: before-after */
+function drawBA(id,before,after,unit){
+  const svg=document.getElementById(id);const W=420,H=170,L=70,R=70,T=10,rowH=56;svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML='';
+  const max=before;const x=v=>L+(W-L-R)*v/max;
+  [[ 'Before',before,css('--ink-3')],['After',after,css('--red')]].forEach(([lab,v,c],i)=>{const y=T+i*rowH+8;
+    const lt=el('text',{x:L-10,y:y+22,'text-anchor':'end','font-size':13,fill:css('--ink-2')},svg);lt.textContent=lab;
+    const g=el('g',{},svg);el('rect',{x:L,y:y,width:W-L-R+60,height:40,fill:'transparent'},g);
+    el('path',{d:hbar(L,y+4,x(v)-L,32,4),fill:c},g);
+    const vt=el('text',{x:x(v)+8,y:y+26,'font-size':16,fill:css('--ink'),'font-family':'JetBrains Mono, monospace','font-weight':600},g);vt.textContent=v.toLocaleString('en-IN');
+    hover(g,`<b>${lab}</b><br>${v.toLocaleString('en-IN')} ${unit}`)});
+  const pct=Math.round((1-after/before)*100);const ft=el('text',{x:L,y:H-6,'font-size':12,fill:css('--red-soft'),'font-weight':700},svg);ft.textContent=`−${pct}% ${unit}`;
+}
+/* E5: build vs platform (stacked 100% bars, two segments, 2px gap) */
+function drawDepth(){
+  const svg=document.getElementById('cDepth');const data=[...SKILLS].sort((a,b)=>b.b-a.b);const W=980,rowH=22,L=220,R=20,T=34;const H=T+data.length*rowH+26;svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML='';
+  const x=v=>L+(W-L-R)*v/100;
+  // legend
+  [['Build work',css('--red')],['Platform / admin work',css('--ink-3')]].forEach(([t,c],i)=>{const gx=L+i*180;el('rect',{x:gx,y:6,width:12,height:12,rx:3,fill:c},svg);const tt=el('text',{x:gx+18,y:16,'font-size':12,fill:css('--ink-2')},svg);tt.textContent=t});
+  [0,50,100].forEach(t=>{const tx=el('text',{x:x(t),y:H-6,'text-anchor':'middle','font-size':11,fill:css('--ink-3')},svg);tx.textContent=t+'%'});
+  data.forEach((d,i)=>{const y=T+i*rowH;const lt=el('text',{x:L-10,y:y+rowH/2+4,'text-anchor':'end','font-size':12,fill:css('--ink-2')},svg);lt.textContent=d.n;
+    const gap=d.b&&d.p?1:0;
+    if(d.b){const g=el('g',{},svg);el('path',{d:hbar(x(0),y+4,x(d.b)-x(0)-gap,rowH-8,d.p?0:4),fill:css('--red')},g);hover(g,`<b>${d.n}</b><br>Build work ${d.b}%`)}
+    if(d.p){const g=el('g',{},svg);el('path',{d:hbar(x(d.b)+gap,y+4,x(100)-x(d.b)-gap,rowH-8,4),fill:css('--ink-3')},g);hover(g,`<b>${d.n}</b><br>Platform / admin work ${d.p}%`)}
+  });
+}
+/* timeline */
+function drawTime(){
+  const svg=document.getElementById('cTime');const W=980,H=150,L=16,R=16;svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML='';
+  const t0=2021+4/12,t1=2026+10/12;const x=t=>L+(W-L-R)*(t-t0)/(t1-t0);
+  for(let yr=2022;yr<=2026;yr++){el('line',{x1:x(yr),x2:x(yr),y1:20,y2:H-26,stroke:css('--grid')},svg);const tx=el('text',{x:x(yr),y:H-8,'text-anchor':'middle','font-size':12,fill:css('--ink-3')},svg);tx.textContent=yr}
+  const bars=[{t:"Power BI Consultant · Cynoteck",a:2021+4/12,b:2025+4/12,y:30,c:css('--ink-3'),d:"May 2021 – May 2025"},{t:"Power BI Analyst · Thiess",a:2025+4/12,b:t1,y:78,c:css('--red'),d:"May 2025 – Present"}];
+  bars.forEach(bb=>{const g=el('g',{},svg);el('path',{d:hbar(x(bb.a),bb.y,x(bb.b)-x(bb.a)-2,36,4),fill:bb.c},g);const tt=el('text',{x:x(bb.a)+10,y:bb.y+23,'font-size':13,fill:css('--ink'),'font-weight':700},g);tt.textContent=bb.t;hover(g,`<b>${bb.t}</b><br>${bb.d}`)});
+  const tx=el('text',{x:x(t1)-4,y:16,'text-anchor':'end','font-size':11,fill:css('--red-soft'),'font-weight':700},svg);tx.textContent='NOW';
+}
+function table(id,head,rows){const d=document.getElementById(id);d.innerHTML=`<table class="tbl"><thead><tr>${head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td${i===r.length-1?' class="n"':''}>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`}
+document.querySelectorAll('.tbl-toggle').forEach(b=>b.addEventListener('click',()=>{const t=document.getElementById(b.dataset.tbl);t.hidden=!t.hidden;b.textContent=t.hidden?'Show as table':'Hide table'}));
+
+/* card art: generative canvas per card */
+function art(canvas,hue,seed){const r=canvas.getBoundingClientRect();const dpr=Math.min(2,devicePixelRatio||1);canvas.width=r.width*dpr;canvas.height=r.height*dpr;const c=canvas.getContext('2d');c.scale(dpr,dpr);const w=r.width,h=r.height;
+  const g=c.createLinearGradient(0,0,w,h);g.addColorStop(0,`hsl(${hue},70%,14%)`);g.addColorStop(1,`hsl(${hue},80%,4%)`);c.fillStyle=g;c.fillRect(0,0,w,h);
+  let s=seed;const rnd=()=>(s=(s*9301+49297)%233280)/233280;
+  c.globalAlpha=.85;for(let i=0;i<14;i++){const bw=w/16,bh=h*(.15+rnd()*.6);c.fillStyle=`hsla(${hue},85%,${35+rnd()*25}%,${.25+rnd()*.5})`;c.fillRect(i*bw*1.1+6,h-bh,bw*.8,bh)}
+  c.globalAlpha=1;c.strokeStyle=`hsla(${hue},90%,62%,.9)`;c.lineWidth=2;c.beginPath();for(let i=0;i<=20;i++){const xx=i*w/20,yy=h*.25+Math.sin(i*.6+seed)*h*.08+rnd()*h*.06;i?c.lineTo(xx,yy):c.moveTo(xx,yy)}c.stroke()}
+function cardRow(id,items){const rail=document.getElementById(id);items.forEach((it,i)=>{const b=document.createElement('button');b.className='card';b.type='button';b.innerHTML=`<canvas class="art" aria-hidden="true"></canvas>${it.vid?'<canvas class="art vid" aria-hidden="true"></canvas><span class="playhint">▶ TRAILER</span>':''}<div class="cap"><div class="kind">${it.k}</div><div class="t">${it.t}</div><div class="s">${it.s}</div></div>`;b.addEventListener('click',()=>openModal(it));rail.appendChild(b);if(it.vid)attachPreview(b,it.vid);requestAnimationFrame(()=>art(b.querySelector('canvas'),it.hue,i*37+it.t.length))})}
+function top10(){const rail=document.getElementById('top10rail');[...SKILLS].sort((a,b)=>b.v-a.v).slice(0,10).forEach((s,i)=>{const d=document.createElement('div');d.className='t10';d.tabIndex=0;d.setAttribute('aria-label',`Rank ${i+1}: ${s.n}, confidence ${s.v}`);d.innerHTML=`<span class="num" aria-hidden="true">${i+1}</span><div class="poster" style="background:linear-gradient(160deg,hsl(${(i*7)%30},65%,${22-i}%),var(--panel))"><i style="width:${s.v}%"></i><div class="pt">${s.n}</div><div class="pc">${s.v}/100</div></div>`;rail.appendChild(d)})}
+
+/* ---------- trailers: each scene draws one frame at time t (seconds) ---------- */
+const DUR=12;
+const ease=x=>x<0?0:x>1?1:1-Math.pow(1-x,3);
+const seg=(t,a,b)=>ease((t-a)/(b-a));
+function rng(seed){let s=seed;return()=>(s=(s*9301+49297)%233280)/233280}
+function bg(c,w,h,hue){const g=c.createLinearGradient(0,0,w,h);g.addColorStop(0,`hsl(${hue},55%,9%)`);g.addColorStop(1,'#050506');c.fillStyle=g;c.fillRect(0,0,w,h)}
+function caption(c,w,h,t,caps){const cur=caps.find(([a,b])=>t>=a&&t<b);if(!cur)return;const [a,b,txt]=cur;const al=Math.min(1,(t-a)*3,(b-t)*3);c.globalAlpha=al;c.font=`600 ${Math.max(12,w*.026)}px DM Sans, sans-serif`;c.textAlign='center';const tw=c.measureText(txt).width;c.fillStyle='rgba(0,0,0,.6)';c.fillRect(w/2-tw/2-10,h*.80-w*.024,tw+20,w*.036);c.fillStyle='#f3f1ee';c.fillText(txt,w/2,h*.80);c.globalAlpha=1;c.textAlign='left'}
+function title(c,w,h,txt,sub){c.fillStyle='#f3f1ee';c.font=`${w*.06}px "Bebas Neue", Impact, sans-serif`;c.fillText(txt,w*.05,h*.16);if(sub){c.fillStyle='#b9b6b1';c.font=`${Math.max(10,w*.02)}px DM Sans, sans-serif`;c.fillText(sub,w*.05,h*.16+w*.032)}}
+function big(c,x,y,size,txt,col){c.fillStyle=col||'#f3f1ee';c.font=`${size}px "Bebas Neue", Impact, sans-serif`;c.fillText(txt,x,y)}
+const fmt=n=>Math.round(n).toLocaleString('en-IN');
+const SCENES={
+  fabric:{flag:'Trailer · real project figures',draw(c,w,h,t){bg(c,w,h,0);title(c,w,h,'Power BI → Microsoft Fabric');
+    const cols=100,rows=70,gx=w*.05,gy=h*.27,gw=w*.52,gh=h*.48,cw=gw/cols,ch=gh/rows;const r=rng(7);const cut=seg(t,3,7);
+    for(let i=0;i<7000;i++){const keep=i%7<3;const fade=keep?1:1-cut;if(fade<=0.02){r();continue}const x=gx+(i%cols)*cw,y=gy+Math.floor(i/cols)*ch;r();c.fillStyle=keep&&cut>.5?`rgba(229,9,20,${.55+.45*cut})`:`rgba(185,182,177,${.45*fade})`;c.fillRect(x,y,Math.max(1,cw-1),Math.max(1,ch-1))}
+    const reports=7000-4000*cut;big(c,w*.62,h*.40,w*.11,fmt(reports),cut>.98?'#ff4d55':'#f3f1ee');c.fillStyle='#7d7a76';c.font=`${Math.max(10,w*.02)}px DM Sans`;c.fillText('Power BI reports',w*.62,h*.40+w*.03);
+    const lic=300-240*seg(t,7.2,10.5);const lx=w*.62,ly=h*.52,lw=w*.32;c.fillStyle='#2a2a30';c.fillRect(lx,ly,lw,h*.05);c.fillStyle='#e50914';c.fillRect(lx,ly,lw*lic/300,h*.05);big(c,lx,ly+h*.15,w*.06,`${fmt(lic)} licenses`,t>10.5?'#ff4d55':'#f3f1ee');
+    caption(c,w,h,t,[[0,3,'7,000+ reports in the Power BI tenant'],[3,7,'Rationalized and migrated into Microsoft Fabric'],[7,10.5,'Access optimized: licenses cut from 300'],[10.5,12.1,'3,000 reports · 60 licenses']])}},
+  mining:{flag:'Trailer · illustrative sample data',draw(c,w,h,t){bg(c,w,h,20);title(c,w,h,'Daily Mining Production','24-hour excavator view');
+    const st=[['Operating','#d8d5d0'],['EOD','#e50914'],['IOD','#f5a524'],['Maintenance','#6b6f80'],['Non-Rostered','#3a3a42']];
+    const L=w*.15,R=w*.95,T=h*.33,rowH=h*.06;const hour=Math.min(24,t/9*24);const r=rng(11);
+    c.font=`${Math.max(9,w*.017)}px JetBrains Mono, monospace`;
+    for(let e=0;e<6;e++){const y=T+e*rowH;c.fillStyle='#b9b6b1';c.fillText(`EX-0${e+1}`,w*.05,y+rowH*.62);let hh=0;while(hh<24){const p=r();const s=p<.62?0:p<.74?1:p<.84?2:p<.94?3:4;const len=s===0?1+r()*4:.3+r()*1.5;const a=hh,b=Math.min(24,hh+len);hh=b;if(a>hour)continue;const x0=L+(R-L)*a/24,x1=L+(R-L)*Math.min(b,hour)/24;c.fillStyle=st[s][1];c.fillRect(x0,y+rowH*.15,Math.max(1,x1-x0-1),rowH*.7)}}
+    c.fillStyle='#7d7a76';for(let k=0;k<=24;k+=6){const x=L+(R-L)*k/24;c.fillText(`${String(k).padStart(2,'0')}:00`,x-w*.02,T+6*rowH+h*.035)}
+    c.strokeStyle='#ff4d55';c.lineWidth=2;const nx=L+(R-L)*hour/24;c.beginPath();c.moveTo(nx,T-4);c.lineTo(nx,T+6*rowH);c.stroke();
+    let lx=w*.05;const ly=h*.29;st.forEach(([n,col])=>{c.fillStyle=col;c.fillRect(lx,ly-8,10,10);c.fillStyle='#b9b6b1';c.fillText(n,lx+14,ly);lx+=c.measureText(n).width+30});
+    caption(c,w,h,t,[[0,4,'Every excavator, every hour of the shift'],[4,8.5,'Delays split into EOD, IOD, maintenance and non-rostered time'],[8.5,12.1,'Reason codes point to root causes of lost hours']])}},
+  maint:{flag:'Trailer · illustrative sample data',draw(c,w,h,t){bg(c,w,h,340);title(c,w,h,'Equipment Maintenance Performance','Fleet reliability KPIs');
+    const L=w*.08,R=w*.6,T=h*.3,B=h*.72;const p=seg(t,.5,8);c.strokeStyle='#2a2a30';c.lineWidth=1;for(let k=0;k<=4;k++){const y=T+(B-T)*k/4;c.beginPath();c.moveTo(L,y);c.lineTo(R,y);c.stroke()}
+    const r=rng(5);const mtbf=[],mttr=[];for(let i=0;i<13;i++){mtbf.push(.35+i*.04+r()*.08);mttr.push(.7-i*.03+r()*.08)}
+    [[mtbf,'#e50914','MTBF'],[mttr,'#b9b6b1','MTTR']].forEach(([arr,col,lab])=>{c.strokeStyle=col;c.lineWidth=2.5;c.beginPath();const n=Math.max(1,Math.floor(p*12));for(let i=0;i<=n;i++){const x=L+(R-L)*i/12,y=B-(B-T)*arr[i];i?c.lineTo(x,y):c.moveTo(x,y)}c.stroke();const xe=L+(R-L)*n/12,ye=B-(B-T)*arr[n];c.fillStyle=col;c.beginPath();c.arc(xe,ye,4,0,7);c.fill();c.font=`600 ${Math.max(10,w*.018)}px DM Sans`;c.fillText(lab,xe+8,ye+4)});
+    const g=seg(t,5,10);const cx=w*.8,cy=h*.55,rad=w*.11;c.lineWidth=w*.022;c.strokeStyle='#2a2a30';c.beginPath();c.arc(cx,cy,rad,Math.PI*.75,Math.PI*2.25);c.stroke();c.strokeStyle='#e50914';c.beginPath();c.arc(cx,cy,rad,Math.PI*.75,Math.PI*.75+Math.PI*1.5*.92*g);c.stroke();c.textAlign='center';big(c,cx,cy+w*.02,w*.07,`${Math.round(92*g)}%`);c.fillStyle='#7d7a76';c.font=`${Math.max(9,w*.016)}px DM Sans`;c.fillText('Mechanical availability',cx,cy+rad*.9);c.textAlign='left';
+    caption(c,w,h,t,[[0,4,'MTBF and MTTR trends across the fleet'],[4,8,'Planned vs. unplanned maintenance, period by period'],[8,12.1,'Availability benchmarked over the last 28 days']])}},
+  corp:{flag:'Trailer · illustrative sample data',draw(c,w,h,t){bg(c,w,h,10);title(c,w,h,'Corporate Improvements','Initiative tracker');
+    const items=[['Process automation',.92],['Cost reduction',.78],['Quality uplift',.64],['Safety programme',.85],['Lean audits',.55],['Digital adoption',.71]];
+    items.forEach(([n,v],i)=>{const y=h*.28+i*h*.075;const p=seg(t,.5+i*.6,4+i*.6)*v;c.fillStyle='#b9b6b1';c.font=`${Math.max(10,w*.019)}px DM Sans`;c.fillText(n,w*.05,y+h*.035);const x0=w*.32,bw=w*.5;c.fillStyle='#2a2a30';c.fillRect(x0,y+h*.012,bw,h*.035);c.fillStyle=p>.8?'#e50914':p>.6?'#b8323a':'#6b6f80';c.fillRect(x0,y+h*.012,bw*p,h*.035);c.fillStyle='#f3f1ee';c.font=`${Math.max(10,w*.018)}px JetBrains Mono`;c.fillText(`${Math.round(p*100)}%`,x0+bw+w*.015,y+h*.04)});
+    caption(c,w,h,t,[[0,4,'Every improvement initiative in one view'],[4,8,'Progress and effectiveness tracked against targets'],[8,12.1,'Stakeholders see where to focus next']])}},
+  power:{flag:'Trailer · illustrative sample data',draw(c,w,h,t){bg(c,w,h,350);title(c,w,h,'Power Supplies Production','Line monitoring');
+    const y=h*.42;c.fillStyle='#2a2a30';c.fillRect(w*.05,y,w*.9,h*.05);['Assembly','Test','Burn-in','Pack'].forEach((s,i)=>{const x=w*.08+i*w*.23;c.strokeStyle='#7d7a76';c.strokeRect(x,y-h*.1,w*.16,h*.25);c.fillStyle='#b9b6b1';c.font=`${Math.max(9,w*.016)}px DM Sans`;c.fillText(s,x+4,y-h*.11)});
+    for(let k=0;k<14;k++){const x=w*.05+((t*.09+k/14)%1)*w*.88;c.fillStyle=k%5===0?'#f5a524':'#e50914';c.fillRect(x,y+h*.008,w*.025,h*.034)}
+    const hrs=Math.min(8,Math.floor(t/1.3)+1);const r=rng(3);for(let i=0;i<8;i++){const v=.5+r()*.45;if(i>=hrs)continue;const bx=w*.08+i*w*.1,bh=h*.2*v;c.fillStyle='#e50914';c.fillRect(bx,h*.76-bh,w*.06,bh);c.fillStyle='#7d7a76';c.font=`${Math.max(8,w*.014)}px JetBrains Mono`;c.fillText(`H${i+1}`,bx,h*.79)}
+    caption(c,w,h,t,[[0,4,'Units flow through each production stage'],[4,8,'Throughput tracked hour by hour'],[8,12.1,'Bottlenecks surface before they stop the line']])}},
+  deneb:{flag:'Trailer · illustrative sample',draw(c,w,h,t){bg(c,w,h,5);title(c,w,h,'Deneb Visual Lab','Vega-Lite spec → custom Power BI visual');
+    const spec=['{','  "mark": {"type": "bar",','    "cornerRadiusEnd": 4},','  "encoding": {','    "y": {"field": "Equipment"},','    "x": {"field": "Delay hrs",','          "type": "quantitative"},','    "color": {"value": "#e50914"}','  }','}'];
+    const chars=Math.floor(seg(t,.3,6)*spec.join('\n').length);let left=chars;c.font=`${Math.max(9,w*.017)}px JetBrains Mono`;spec.forEach((ln,i)=>{if(left<=0)return;const s=ln.slice(0,left);left-=ln.length+1;c.fillStyle=/"[a-zA-Z ]+":/.test(s)?'#ff4d55':'#b9b6b1';c.fillText(s,w*.05,h*.3+i*h*.052)});
+    const g=seg(t,6,9.5);const vals=[.9,.72,.6,.44,.3];vals.forEach((v,i)=>{const y=h*.3+i*h*.085;c.fillStyle='#7d7a76';c.font=`${Math.max(9,w*.016)}px DM Sans`;c.fillText(`EX-0${i+1}`,w*.55,y+h*.045);c.fillStyle='#e50914';const bw=w*.33*v*g;c.beginPath();c.roundRect?c.roundRect(w*.62,y+h*.015,Math.max(1,bw),h*.045,[0,4,4,0]):c.rect(w*.62,y+h*.015,bw,h*.045);c.fill()});
+    caption(c,w,h,t,[[0,6,'Writing the Vega-Lite spec, with Claude AI speeding up drafts'],[6,12.1,'Rendered as a bespoke visual inside Power BI']])}}
+};
+/* AI toolkit trailers */
+function typed(str,p){return str.slice(0,Math.floor(str.length*Math.max(0,Math.min(1,p))))}
+function bubble(c,x,y,w,txt,mine,fs){c.font=`${fs}px DM Sans, sans-serif`;const lines=[];let cur='';txt.split(' ').forEach(wd=>{const t=cur?cur+' '+wd:wd;if(c.measureText(t).width>w-24&&cur){lines.push(cur);cur=wd}else cur=t});if(cur)lines.push(cur);const h=lines.length*fs*1.35+16;c.fillStyle=mine?'rgba(229,9,20,.85)':'rgba(255,255,255,.08)';c.beginPath();c.roundRect?c.roundRect(x,y,w,h,12):c.rect(x,y,w,h);c.fill();c.fillStyle='#f3f1ee';lines.forEach((l,i)=>c.fillText(l,x+12,y+12+fs*.9+i*fs*1.35));return h}
+Object.assign(SCENES,{
+  aiReport:{flag:'Trailer · illustrative sample',draw(c,w,h,t){bg(c,w,h,18);title(c,w,h,'AI Report Development','Claude + Power BI');const fs=Math.max(10,w*.017);
+    const ask='Build a page showing delay hours by excavator, with a last-28-days filter.';const y1=h*.27;bubble(c,w*.05,y1,w*.42,typed(ask,seg(t,.2,2.5)),true,fs);
+    if(t>2.6){const ans='Here is a measure and a page layout. I checked the totals against the source table.';bubble(c,w*.05,y1+h*.145,w*.42,typed(ans,seg(t,2.6,4.6)),false,fs)}
+    if(t>4.6){c.font=`${fs*.95}px JetBrains Mono`;c.fillStyle='#ff4d55';const dax=['Delay Hrs L28D =','CALCULATE(','  SUM(Delays[Hours]),','  Dates[Last28] = TRUE()',')'];let left=Math.floor(seg(t,4.6,7)*dax.join('').length);dax.forEach((l,i)=>{if(left<=0)return;c.fillStyle=i?'#b9b6b1':'#ff4d55';c.fillText(l.slice(0,left),w*.05,y1+h*.32+i*fs*1.22);left-=l.length})}
+    const g=seg(t,6.5,10);const px=w*.54,py=h*.24,pw=w*.41,ph=h*.52;c.strokeStyle='rgba(255,255,255,.15)';c.strokeRect(px,py,pw,ph);c.fillStyle='#7d7a76';c.font=`${Math.max(9,w*.015)}px DM Sans`;c.fillText('Report page',px+8,py+fs*1.2);
+    [['412','Delay hrs'],['6','Excavators'],['18%','Lost time']].forEach(([v,l],i)=>{const kx=px+8+i*(pw-16)/3,ky=py+fs*2;c.globalAlpha=seg(t,6.5+i*.4,7.5+i*.4);c.fillStyle='rgba(255,255,255,.06)';c.fillRect(kx,ky,(pw-16)/3-6,h*.1);big(c,kx+6,ky+h*.065,w*.032,v);c.fillStyle='#7d7a76';c.font=`${Math.max(8,w*.013)}px DM Sans`;c.fillText(l,kx+6,ky+h*.09);c.globalAlpha=1});
+    [.9,.7,.55,.4,.3,.2].forEach((v,i)=>{const by=py+h*.2+i*h*.045;c.fillStyle='#7d7a76';c.font=`${Math.max(8,w*.013)}px JetBrains Mono`;c.fillText(`EX-0${i+1}`,px+8,by+h*.03);c.fillStyle='#e50914';c.fillRect(px+w*.06,by+h*.008,(pw-w*.08)*v*g,h*.03)});
+    caption(c,w,h,t,[[0,4.6,'Describe the report in plain language'],[4.6,7,'Claude drafts the DAX and checks the numbers'],[7,12.1,'The page is built, reviewed and refined']])}},
+  mcp:{flag:'Trailer · illustrative sample',draw(c,w,h,t){bg(c,w,h,350);title(c,w,h,'Power BI MCP Servers','Claude talking to the semantic model');const fs=Math.max(10,w*.018);
+    const nodes=[[w*.14,h*.42,'Claude'],[w*.47,h*.42,'MCP server'],[w*.8,h*.42,'Semantic model']];
+    c.strokeStyle='rgba(255,255,255,.18)';c.lineWidth=2;c.beginPath();c.moveTo(nodes[0][0],nodes[0][1]);c.lineTo(nodes[2][0],nodes[2][1]);c.stroke();
+    for(let k=0;k<5;k++){const p=((t*.35+k/5)%1);const fwd=k%2===0;const x=fwd?nodes[0][0]+(nodes[2][0]-nodes[0][0])*p:nodes[2][0]-(nodes[2][0]-nodes[0][0])*p;c.fillStyle=fwd?'#ff4d55':'#f5c518';c.beginPath();c.arc(x,nodes[0][1],w*.008,0,7);c.fill()}
+    nodes.forEach(([x,y,l],i)=>{c.fillStyle=i===0?'#e50914':'rgba(255,255,255,.08)';c.strokeStyle='rgba(255,255,255,.25)';c.beginPath();c.roundRect?c.roundRect(x-w*.09,y-h*.07,w*.18,h*.14,14):c.rect(x-w*.09,y-h*.07,w*.18,h*.14);c.fill();c.stroke();c.fillStyle='#f3f1ee';c.font=`600 ${fs}px DM Sans`;c.textAlign='center';c.fillText(l,x,y+fs*.35);c.textAlign='left'});
+    const calls=[['list tables','6 tables'],['read measures','24 measures'],['create measure','Delay Hrs L28D'],['run DAX query','412 hrs ✓']];c.font=`${Math.max(9,w*.016)}px JetBrains Mono`;
+    calls.forEach(([a,b],i)=>{const al=seg(t,1+i*2.2,1.6+i*2.2);if(al<=0)return;c.globalAlpha=al;const y=h*.6+i*h*.045;c.fillStyle='#ff4d55';c.fillText('→ '+a,w*.24,y);c.fillStyle='#b9b6b1';c.fillText(b,w*.55,y);c.globalAlpha=1});
+    caption(c,w,h,t,[[0,4,'Claude connects to the model through an MCP server'],[4,8,'It reads tables and measures, then creates new ones'],[8,12.1,'DAX queries confirm the numbers before anything ships']])}},
+  skills:{flag:'Trailer · illustrative sample',draw(c,w,h,t){bg(c,w,h,5);title(c,w,h,'Custom Claude Skills','Team BI standards as reusable AI workflows');const fs=Math.max(9,w*.016);
+    const md=['---','name: pbi-report-standards','description: Build Power BI pages','  to our team standards','---','1. Name measures [Area] Metric','2. Add a last-28-days filter','3. Validate totals with DAX','4. Write the page notes'];
+    let left=Math.floor(seg(t,.3,5.5)*md.join('').length);c.font=`${fs}px JetBrains Mono`;c.fillStyle='rgba(255,255,255,.05)';c.fillRect(w*.04,h*.26,w*.46,h*.5);c.fillStyle='#7d7a76';c.fillText('SKILL.md',w*.06,h*.26+fs*1.4);
+    md.forEach((l,i)=>{if(left<=0)return;c.fillStyle=l.startsWith('name')||l.startsWith('description')?'#ff4d55':'#b9b6b1';c.fillText(l.slice(0,left),w*.06,h*.26+fs*3+i*fs*1.4);left-=l.length});
+    ['Fleet report','Maintenance report','Safety report'].forEach((r,i)=>{const y=h*.28+i*h*.15;const p=seg(t,5.5+i*1.6,7+i*1.6);c.globalAlpha=Math.min(1,p*2);c.fillStyle='rgba(255,255,255,.06)';c.fillRect(w*.56,y,w*.38,h*.12);c.fillStyle='#f3f1ee';c.font=`600 ${fs*1.1}px DM Sans`;c.fillText(r,w*.58,y+h*.045);for(let k=0;k<4;k++){const on=p>(k+1)/4;c.fillStyle=on?'#46d369':'#3a3a42';c.font=`${fs}px DM Sans`;c.fillText(on?'✓':'○',w*.58+k*w*.04,y+h*.095)}c.globalAlpha=1});
+    caption(c,w,h,t,[[0,5.5,'Team conventions written once as a Claude skill'],[5.5,12.1,'Every report follows the same steps and checks']])}},
+  copilot:{flag:'Trailer · illustrative sample',draw(c,w,h,t){bg(c,w,h,340);title(c,w,h,'Copilot & Fabric Data Agents','Ask the data in plain language');const fs=Math.max(10,w*.019);
+    const q='Which excavator lost the most hours last week?';c.fillStyle='rgba(255,255,255,.08)';c.beginPath();c.roundRect?c.roundRect(w*.08,h*.26,w*.84,h*.1,999):c.rect(w*.08,h*.26,w*.84,h*.1);c.fill();c.fillStyle='#f3f1ee';c.font=`${fs}px DM Sans`;c.fillText(typed(q,seg(t,.3,3)),w*.11,h*.325);
+    if(t>3.4&&t<4.6){const d=Math.floor((t*4)%4);c.fillStyle='#b9b6b1';c.fillText('Thinking'+'.'.repeat(d),w*.11,h*.46)}
+    const a=seg(t,4.6,6);if(a>0){c.globalAlpha=a;big(c,w*.11,h*.49,w*.06,'EX-03');c.fillStyle='#b9b6b1';c.font=`${fs}px DM Sans`;c.fillText('31.5 delay hours, mostly IOD (waiting on trucks).',w*.11,h*.545);c.globalAlpha=1}
+    const g=seg(t,6.2,9);[['EX-03',1],['EX-01',.74],['EX-05',.6],['EX-02',.41]].forEach(([n,v],i)=>{const y=h*.58+i*h*.04;c.fillStyle='#7d7a76';c.font=`${Math.max(8,w*.014)}px JetBrains Mono`;c.fillText(n,w*.11,y+h*.03);c.fillStyle=i?'#6b6f80':'#e50914';c.fillRect(w*.19,y+h*.008,w*.5*v*g,h*.03)});
+    caption(c,w,h,t,[[0,4.6,'A manager asks a question in plain words'],[4.6,8,'The agent answers from a governed, AI-ready model'],[8,12.1,'With the chart to back it up']])}}
+});
+function sizeCanvas(cv){const r=cv.getBoundingClientRect();const d=Math.min(2,devicePixelRatio||1);cv.width=Math.max(1,r.width*d);cv.height=Math.max(1,r.height*d);const c=cv.getContext('2d');c.setTransform(d,0,0,d,0,0);return{c,w:r.width,h:r.height}}
+const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const player={raf:0,t:0,playing:false,scene:null,last:0};
+function tick(cb){let done=false;const go=n=>{if(!done){done=true;cb(n)}};const id=requestAnimationFrame(go);setTimeout(()=>go(performance.now()),50);return id}
+function playerFrame(now){const P=player;const cv=document.getElementById('mCanvas');if(!P.dims||!P.dims.w||Math.abs(P.dims.w-cv.clientWidth)>1)P.dims=sizeCanvas(cv);if(!P.dims.w){if(P.playing)P.raf=tick(playerFrame);return}if(P.playing){P.t+= (now-(P.last||now))/1000;P.last=now;P.t=Math.min(P.t,DUR);if(P.t>=DUR){P.t=DUR;P.playing=false;document.getElementById('mPP').textContent='↻';document.getElementById('mPP').setAttribute('aria-label','Replay')}}
+  const {c,w,h}=P.dims;P.scene.draw(c,w,h,Math.min(P.t,DUR-.001));document.getElementById('mProg').style.width=(P.t/DUR*100)+'%';const s=Math.floor(P.t);document.getElementById('mTime').textContent=`0:${String(s).padStart(2,'0')} / 0:${DUR}`;
+  if(P.playing)P.raf=tick(playerFrame)}
+function startPlayer(key){const P=player;cancelAnimationFrame(P.raf);P.scene=SCENES[key];const box=document.getElementById('mPlayer');box.hidden=false;document.getElementById('mFlag').textContent=P.scene.flag;P.dims=sizeCanvas(document.getElementById('mCanvas'));P.t=REDUCE?DUR:0;P.last=0;P.playing=!REDUCE;const pp=document.getElementById('mPP');pp.textContent=REDUCE?'▶':'❚❚';pp.setAttribute('aria-label',REDUCE?'Play':'Pause');P.raf=tick(playerFrame)}
+function stopPlayer(){cancelAnimationFrame(player.raf);player.playing=false;document.getElementById('mPlayer').hidden=true}
+document.getElementById('mPP').addEventListener('click',()=>{const P=player,pp=document.getElementById('mPP');if(P.playing){P.playing=false;pp.textContent='▶';pp.setAttribute('aria-label','Play')}else{if(P.t>=DUR)P.t=0;P.playing=true;P.last=0;pp.textContent='❚❚';pp.setAttribute('aria-label','Pause');P.raf=tick(playerFrame)}});
+/* card hover previews */
+function attachPreview(card,key){if(REDUCE)return;const cv=card.querySelector('.art.vid');let raf=0,t0=0;const loop=now=>{if(!t0)t0=now;const t=((now-t0)/1000)%DUR;const d=card._dims;SCENES[key].draw(d.c,d.w,d.h,t);raf=requestAnimationFrame(loop)};
+  const on=()=>{card._dims=sizeCanvas(cv);card.classList.add('playing');t0=0;raf=requestAnimationFrame(loop)};const off=()=>{cancelAnimationFrame(raf);card.classList.remove('playing')};
+  card.addEventListener('pointerenter',on);card.addEventListener('pointerleave',off);card.addEventListener('focus',on);card.addEventListener('blur',off)}
+
+/* modal */
+const modal=document.getElementById('modal');let lastFocus=null;
+function openModal(it){lastFocus=document.activeElement;document.getElementById('mTitle').textContent=it.t;const bn=document.getElementById('mBanner');bn.style.height=it.vid?'96px':'';bn.style.background=it.vid?'var(--panel)':`linear-gradient(0deg,var(--panel),rgba(22,22,26,0) 70%),linear-gradient(135deg,hsl(${it.hue},75%,28%),hsl(${it.hue},80%,8%))`;document.getElementById('mBody').innerHTML=`<div class="meta"><span class="match">${it.k}</span><span>${it.s}</span></div><ul>${it.body.map(x=>`<li>${x}</li>`).join('')}</ul><div class="chips">${it.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div>`;modal.hidden=false;if(it.vid)startPlayer(it.vid);else stopPlayer();document.getElementById('mClose').focus()}
+function closeModal(){stopPlayer();modal.hidden=true;lastFocus&&lastFocus.focus()}
+document.getElementById('mClose').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeModal()});
+document.getElementById('infoBtn').addEventListener('click',()=>openModal({k:"About",t:"Ayush Tiwari",s:"PL-300 · 5.5 years · Gurugram",hue:0,body:["PL-300 Microsoft Certified Power BI Data Analyst Associate with 5.5 years in data visualization, modeling and SQL.","Crafted 300+ reports and dashboards that support data-driven decisions.","Integrates AI tools such as Copilot and Microsoft Fabric Data Agents with Power BI.","Open to Senior Power BI Developer, BI Engineer and Microsoft Fabric roles: Gurugram/NCR, remote, or abroad."],chips:["Power BI","DAX","Power Query","SQL","Microsoft Fabric","Power Automate","Python"]}));
+document.getElementById('copyMail').addEventListener('click',async e=>{const b=e.currentTarget;try{await navigator.clipboard.writeText('aayyush456@gmail.com');b.textContent='Copied'}catch{const s=getSelection(),r=document.createRange();r.selectNodeContents(b.previousElementSibling);s.removeAllRanges();s.addRange(r);b.textContent='Selected, press Ctrl+C'}setTimeout(()=>b.textContent='Copy email',2000)});
+
+/* hero ambient: drifting dashboard bars */
+function hero(){const cv=document.getElementById('heroCanvas');const c=cv.getContext('2d');const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let w,h,t=0;
+  function size(){const r=cv.getBoundingClientRect();const d=Math.min(2,devicePixelRatio||1);cv.width=r.width*d;cv.height=r.height*d;c.setTransform(d,0,0,d,0,0);w=r.width;h=r.height}
+  const N=42,phase=[...Array(N)].map((_,i)=>i*1.7%6.28);
+  function frame(){c.clearRect(0,0,w,h);const bw=w/N;for(let i=0;i<N;i++){const v=.25+.55*(.5+.5*Math.sin(t*.6+phase[i]))*(.4+.6*i/N);const bh=h*v;c.fillStyle=`rgba(229,9,20,${.10+.35*i/N})`;c.fillRect(i*bw+2,h-bh,bw-4,bh)}
+    c.strokeStyle='rgba(255,77,85,.55)';c.lineWidth=2;c.beginPath();for(let i=0;i<=N;i++){const xx=i*bw,yy=h*.32+Math.sin(i*.35+t*.8)*h*.06-i/N*h*.12;i?c.lineTo(xx,yy):c.moveTo(xx,yy)}c.stroke();
+    if(!reduce){t+=.012;requestAnimationFrame(frame)}}
+  size();addEventListener('resize',size);frame()}
+
+function drawAll(){drawConf();drawArea();drawBA('cEstate',7000,3000,'reports');drawBA('cLic',300,60,'licenses');drawDepth();drawTime()}
+top10();cardRow('aiRail',AITOOLS);cardRow('projRail',PROJECTS);cardRow('roleRail',ROLES);cardRow('credRail',CREDS);drawAll();hero();
+
+/* spatial interactions: cards tilt toward the pointer with a moving sheen; hero window and scene shift in depth */
+if(!REDUCE && matchMedia('(hover:hover)').matches){
+  document.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();const px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
+      card.style.setProperty('--ry',((px-.5)*12).toFixed(2)+'deg');card.style.setProperty('--rx',((.5-py)*10).toFixed(2)+'deg');
+      card.style.setProperty('--mx',(px*100).toFixed(1)+'%');card.style.setProperty('--my',(py*100).toFixed(1)+'%')});
+    card.addEventListener('pointerleave',()=>{card.style.setProperty('--rx','0deg');card.style.setProperty('--ry','0deg')});
+  });
+  const heroEl=document.querySelector('.hero'),win=document.getElementById('heroWin'),hc=document.getElementById('heroCanvas');
+  heroEl.addEventListener('pointermove',e=>{const r=heroEl.getBoundingClientRect();const px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+    win.style.transform=`rotateY(${(px*5).toFixed(2)}deg) rotateX(${(-py*4).toFixed(2)}deg) translateZ(0)`;hc.style.transform=`translate(${(-px*24).toFixed(1)}px,${(-py*16).toFixed(1)}px) scale(1.05)`});
+  heroEl.addEventListener('pointerleave',()=>{win.style.transform='';hc.style.transform=''});
+}
+
+/* ---------- contact form ----------
+   On an ordinary website (e.g. GitHub Pages) messages go straight to Gmail through FormSubmit.
+   Inside a Claude artifact outside requests are blocked, so the form hands the message to the
+   visitor's email app instead and never claims it was sent. */
+const TO='aayyush456@gmail.com';
+const ENDPOINT='https://formsubmit.co/ajax/'+TO;
+const DIRECT=/^https?:$/.test(location.protocol)&&!/claude|anthropic/i.test(location.hostname)&&!/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+const cModal=document.getElementById('contact'),cForm=document.getElementById('cForm'),cDone=document.getElementById('cDone');
+let cLast=null;
+function openContact(service){cLast=document.activeElement;cForm.hidden=false;cDone.hidden=true;cDone.innerHTML='';if(service)document.getElementById('cService').value=service;cModal.hidden=false;document.getElementById('cName').focus()}
+function closeContact(){cModal.hidden=true;cLast&&cLast.focus()}
+document.querySelectorAll('[data-contact]').forEach(b=>b.addEventListener('click',()=>openContact(b.dataset.contact)));
+document.getElementById('cClose').addEventListener('click',closeContact);
+cModal.addEventListener('click',e=>{if(e.target===cModal)closeContact()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!cModal.hidden)closeContact()});
+const cMsg=document.getElementById('cMsg');cMsg.addEventListener('input',()=>{document.getElementById('cCount').textContent=`${cMsg.value.length} / 2000`});
+function setErr(id,msg){const f=document.getElementById(id);f.classList.toggle('bad',!!msg);f.querySelector('.err').textContent=msg||''}
+function validate(v){let ok=true;
+  if(v.name.length<2){setErr('fName','Enter your name.');ok=false}else setErr('fName');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email)){setErr('fEmail','Enter a valid email address, like name@company.com.');ok=false}else setErr('fEmail');
+  if(v.message.length<10){setErr('fMsg','Describe what you need in at least a sentence.');ok=false}else setErr('fMsg');
+  return ok}
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function compose(v){return{subject:`Portfolio enquiry: ${v.service} from ${v.name}`,body:`Name: ${v.name}\nEmail: ${v.email}\nService: ${v.service}\n\n${v.message}`}}
+function showDone(html){cForm.hidden=true;cDone.hidden=false;cDone.innerHTML=html;const f=cDone.querySelector('button,a');f&&f.focus()}
+function mailtoFallback(v,reason){const m=compose(v);const href=`mailto:${TO}?subject=${encodeURIComponent(m.subject)}&body=${encodeURIComponent(m.body)}`;
+  const a=document.createElement('a');a.href=href;a.rel='noopener';document.body.appendChild(a);a.click();a.remove();
+  showDone(`<h4>Almost there</h4><p>${reason||'Your email app should open with this message addressed to <b>'+TO+'</b>. Press Send in your email app to deliver it.'}</p>
+   <p>If no email app opened, copy the message and email it to <b>${TO}</b>.</p>
+   <pre id="cCopyText">${esc('To: '+TO+'\nSubject: '+m.subject+'\n\n'+m.body)}</pre>
+   <div class="btns"><a class="btn hire" href="${esc(href)}">Open email app</a><button class="btn info" type="button" id="cCopy">Copy message</button><button class="btn info" type="button" id="cEdit">Edit message</button></div>`);
+  document.getElementById('cCopy').addEventListener('click',async e=>{const b=e.currentTarget;try{await navigator.clipboard.writeText(m.body);b.textContent='Copied'}catch{const s=getSelection(),r=document.createRange();r.selectNodeContents(document.getElementById('cCopyText'));s.removeAllRanges();s.addRange(r);b.textContent='Selected, press Ctrl+C'}});
+  document.getElementById('cEdit').addEventListener('click',()=>{cDone.hidden=true;cForm.hidden=false;document.getElementById('cMsg').focus()})}
+cForm.addEventListener('submit',async e=>{e.preventDefault();
+  const v={name:document.getElementById('cName').value.trim(),email:document.getElementById('cEmail').value.trim(),service:document.getElementById('cService').value,message:cMsg.value.trim(),honey:document.getElementById('cHoney').value};
+  if(!validate(v)){cForm.querySelector('.bad input,.bad textarea')?.focus();return}
+  if(v.honey){showDone('<h4>Thanks</h4><p>Your message was received.</p>');return}
+  if(!DIRECT){mailtoFallback(v);return}
+  const btn=document.getElementById('cSend');btn.disabled=true;btn.textContent='Sending…';
+  try{const m=compose(v);const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({name:v.name,email:v.email,service:v.service,message:v.message,_subject:m.subject,_replyto:v.email,_template:'table',_captcha:'false'})});
+    const j=await r.json().catch(()=>({}));
+    if(r.ok&&String(j.success)==='true'){cForm.reset();document.getElementById('cCount').textContent='0 / 2000';showDone(`<h4>Message sent</h4><p>Thanks, ${esc(v.name)}. Ayush will reply to <b>${esc(v.email)}</b>.</p><div class="btns"><button class="btn info" type="button" onclick="closeContact()">Close</button></div>`)}
+    else mailtoFallback(v,'The message could not be sent from this page right now. Your email app should open with it ready to send to <b>'+TO+'</b>.')}
+  catch{mailtoFallback(v,'The message could not be sent from this page right now. Your email app should open with it ready to send to <b>'+TO+'</b>.')}
+  finally{btn.disabled=false;btn.textContent='Send'}});
+</script>
+</body>
+</html>
